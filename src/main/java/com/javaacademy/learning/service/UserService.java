@@ -21,22 +21,22 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserDTO create(UserDTO userDTO) {
-        User user = UserMapper.mapToUser(userDTO);
+        User user = UserMapper.bookDto2Book(userDTO);
         User savedUser = userRepository.save(user);
-        UserDTO savedUserDTO = UserMapper.mapToUserDTO(savedUser);
+        UserDTO savedUserDTO = UserMapper.book2BookDto(savedUser);
         return savedUserDTO;
     }
 
     public UserDTO getById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User user = optionalUser.get();
-        return UserMapper.mapToUserDTO(user);
+        return UserMapper.book2BookDto(user);
 
     }
 
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepository.findAll();
-        return users.stream().map(UserMapper::mapToUserDTO).collect(Collectors.toList());
+        return users.stream().map(UserMapper::book2BookDto).collect(Collectors.toList());
     }
 
     public UserDTO update(long userId, UserDTO user) {
@@ -47,7 +47,7 @@ public class UserService {
         existingUser.setLastName(user.getLastName());
         existingUser.setAge(user.getAge());
         User updatedUser = userRepository.save(existingUser);
-        return UserMapper.mapToUserDTO(updatedUser);
+        return UserMapper.book2BookDto(updatedUser);
 
     }
 

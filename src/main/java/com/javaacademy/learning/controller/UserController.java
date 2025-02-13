@@ -38,7 +38,7 @@ public class UserController {
         return ResponseEntity.ok(foundUser);
     }
 
-    @GetMapping("/allusers")
+    @GetMapping("/api/users")
     public ResponseEntity<?> findAll(){
         List<UserDTO> userList = userService.getAllUsers();
         return ResponseEntity.ok(userList);
@@ -52,7 +52,7 @@ public class UserController {
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<?> delete(@PathVariable long userId) {
         userService.delete(userId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
 
     }
 
