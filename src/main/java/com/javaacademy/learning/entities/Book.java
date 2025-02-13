@@ -3,7 +3,7 @@ package com.javaacademy.learning.entities;
 import jakarta.persistence.*;
 
 @Entity(name = "book")
-@Table(name = "BOOK")
+@Table(name = "BOOK", schema = "publc")
 
 public class Book {
     @Id

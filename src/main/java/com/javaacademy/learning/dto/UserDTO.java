@@ -1,11 +1,16 @@
 package com.javaacademy.learning.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDTO {
     private long id;
     private String userName;
     private String firstName;
     private String lastName;
     private Integer age;
+    private List<BookDTO> books = new ArrayList<>();
+    private List<ApplicationDTO> applications = new ArrayList<ApplicationDTO>();
 
 
     public long getId() {
@@ -44,5 +49,21 @@ public class UserDTO {
     }
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public List<BookDTO> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookDTO> books) {
+        this.books = books;
+    }
+
+    public List<ApplicationDTO> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<ApplicationDTO> applications) {
+        this.applications = applications;
     }
 }

@@ -33,7 +33,7 @@ public class User {
             mappedBy = "user")
     private List<Book> books = new ArrayList<Book>();
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "USER_APPLICATION", schema = "public",
+    @JoinTable(name = "USER_APPLICATION", schema = "publc",
             joinColumns = @JoinColumn(name = "user_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "application_id", nullable = false))
     private List<Application> applications = new ArrayList<>();

@@ -21,22 +21,22 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserDTO create(UserDTO userDTO) {
-        User user = UserMapper.bookDto2Book(userDTO);
+        User user = UserMapper.userDTO2User(userDTO);
         User savedUser = userRepository.save(user);
-        UserDTO savedUserDTO = UserMapper.book2BookDto(savedUser);
+        UserDTO savedUserDTO = UserMapper.user2UserDTO(savedUser);
         return savedUserDTO;
     }
 
     public UserDTO getById(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User user = optionalUser.get();
-        return UserMapper.book2BookDto(user);
+        return UserMapper.user2UserDTO(user);
 
     }
 
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepository.findAll();
-        return users.stream().map(UserMapper::book2BookDto).collect(Collectors.toList());
+        return users.stream().map(UserMapper::user2UserDTO).collect(Collectors.toList());
     }
 
     public UserDTO update(long userId, UserDTO user) {
@@ -47,8 +47,13 @@ public class UserService {
         existingUser.setLastName(user.getLastName());
         existingUser.setAge(user.getAge());
         User updatedUser = userRepository.save(existingUser);
-        return UserMapper.book2BookDto(updatedUser);
+        return UserMapper.user2UserDTO(updatedUser);
 
+    }
+    public void removeBookFromUser(Long userId, Long bookId){
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User with ID " + userId + " not found"));
+        user.getBooks().removeIf(book -> book.getId().equals(bookId));
+        userRepository.save(user);
     }
 
     public void delete(long userId) {

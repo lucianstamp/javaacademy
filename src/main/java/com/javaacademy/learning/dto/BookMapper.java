@@ -13,7 +13,6 @@ public class BookMapper {
 
     public static Book bookDTO2Book(BookDTO bookDTO) {
         Book book = new Book();
-        book.setId(bookDTO.getId());
         book.setName(bookDTO.getName());
         book.setAuthor(bookDTO.getAuthor());
         return book;

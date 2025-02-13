@@ -55,6 +55,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
 
     }
+    @DeleteMapping("/{userId}/books/{bookId}")
+    public void removeBookFromUser(@PathVariable long userId, @PathVariable long bookId) {
+        userService.removeBookFromUser(userId,bookId);
+    }
 
 
 
